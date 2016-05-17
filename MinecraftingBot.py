@@ -29,13 +29,11 @@ def handle(msg):
         reply = ''
 
         # For long messages, only return the first 10 characters.
-        if len(msg['text']) > 10:
-            reply = u'First 10 characters:\n'
-
         # Length-checking and substring-extraction may work differently
         # depending on Python versions and platforms. See above.
-
-        reply += msg['text'][:10].encode('unicode-escape').decode('ascii')
+        reply += "http://www.minecraft-crafting.net/app/src/Tools/craft/craft_"
+        reply += msg['text'].decode('ascii')
+        reply += ".gif"
         bot.sendMessage(chat_id, reply)
 
 
