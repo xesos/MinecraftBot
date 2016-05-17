@@ -18,7 +18,7 @@ def handle(msg):
         # private message
         print 'Received a %s from %s' % (content_type, m.chat)  # m.chat == m.from_
     message = msg['text'].encode('unicode-escape').decode('ascii')
-    if message == '/start':
+    if message == '/start' or message == 'Back':
         # For long messages, only return the first 10 characters.
         # Length-checking and substring-extraction may work differently
         # depending on Python versions and platforms. See above.
@@ -28,13 +28,17 @@ def handle(msg):
                      ['Tools', 'Combat','Brewing','Materials'],
                  ])
         bot.sendMessage(chat_id, 'Select the category of element you want to craft', reply_markup=markup)
-    if message == 'Blocks':
+    elif message == 'Blocks':
         markup2 = ReplyKeyboardMarkup(keyboard=[
-                     ['Stone'],
+                     ['Stone Brick','Back'],
                  ])
         bot.sendMessage(chat_id, 'Select element to craft', reply_markup=markup2)
-    if message == 'Stone':
-        f = open("images/craft_stonebrick.png",'rb')
+    else:
+        message = message.lower()
+        message = message.replace(" ","")
+        message += ".png"
+        address = "images/" + message
+        f = open(address,'rb')
         bot.sendPhoto(chat_id, f)
                 
 
