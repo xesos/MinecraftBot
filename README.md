@@ -16,4 +16,9 @@ Telegram Bot for searching how to craft things in Minecraft. This will have the 
 
 Inside any category you cand find all the objects for Minecraft and select
 the one you are interested of. Once selected, the bot will give you back
-and image of how to get this object  
+and image of how to get this object.
+
+
+Using "TELEPOT FRAMEWORK". From git hub respository: https://github.com/nickoala/telepot.git
+
+Example taken from the same git respository 
