@@ -2,6 +2,13 @@ import sys
 import time
 import telepot
 import telepot.namedtuple
+from StringIO import StringIO
+import urllib2
+from PIL import Image
+import requests
+import numpy as np
+
+
 
 """
 $ python2.7 emodi.py <token>
@@ -15,8 +22,15 @@ checking and substring-extraction below may not work as expected.
 """
 
 def handle(msg):
+
     content_type, chat_type, chat_id = telepot.glance(msg)
     m = telepot.namedtuple.Message(**msg)
+    hdr = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11',
+       'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+       'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
+       'Accept-Encoding': 'none',
+       'Accept-Language': 'en-US,en;q=0.8',
+       'Connection': 'keep-alive'}
 
     if chat_id < 0:
         # group message
@@ -26,15 +40,11 @@ def handle(msg):
         print 'Received a %s from %s' % (content_type, m.chat)  # m.chat == m.from_
 
     if content_type == 'text':
-        reply = ''
-
         # For long messages, only return the first 10 characters.
         # Length-checking and substring-extraction may work differently
         # depending on Python versions and platforms. See above.
-        reply += "http://www.minecraft-crafting.net/app/src/Tools/craft/craft_"
-        reply += msg['text'].decode('ascii')
-        reply += ".gif"
-        bot.sendMessage(chat_id, reply)
+        f = open("images/craft_chest.png",'rb')
+        bot.sendPhoto(chat_id, f)
 
 
 TOKEN = sys.argv[1]  # get token from command-line
