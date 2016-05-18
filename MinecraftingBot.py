@@ -1,5 +1,6 @@
 import sys
 import time
+import os.path
 import telepot
 import telepot.namedtuple
 from telepot.namedtuple import ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardHide, ForceReply
@@ -33,13 +34,82 @@ def handle(msg):
                      ['Stone Brick','Back'],
                  ])
         bot.sendMessage(chat_id, 'Select element to craft', reply_markup=markup2)
+    elif message == 'Decoration':
+        markup2 = ReplyKeyboardMarkup(keyboard=[
+                     ['Bed', 'Tripwire hook', 'Button'],
+                     ['Redstone comparator', 'Daylight sensor', 'Hopper'],
+                     ['Dropper', 'Repeater', 'Redstone comparator'],
+                     ['Redstone torch', 'Trapdoor','Pressure plates','Back'],
+                 ])
+        bot.sendMessage(chat_id, 'Select element to craft', reply_markup=markup2)
+    elif message == 'Redstone':
+        markup2 = ReplyKeyboardMarkup(keyboard=[
+                     ['Note block','Powered rail','Detector rail', 'Boat'],
+                     ['Sticky piston', 'TNT', 'Doors', 'Fence'],
+                     ['Redstone lamp', 'Tripwire hook', 'Button'],
+                     ['Redstone comparator', 'Daylight sensor', 'Hopper'],
+                     ['Dropper', 'Repeater', 'Redstone comparator'],
+                     ['Redstone torch', 'Trapdoor','Pressure plates','Back'],
+                 ])
+        bot.sendMessage(chat_id, 'Select element to craft', reply_markup=markup2)
+    elif message == 'Transportation':
+        markup2 = ReplyKeyboardMarkup(keyboard=[
+                     ['Tracks','Activator rail','Minecart', 'Boat'],
+                     ['Minecart with hopper', 'Minecart with tnt'],
+                     ['Carrot on a stick', 'Firework','Back'],
+                 ])
+        bot.sendMessage(chat_id, 'Select element to craft', reply_markup=markup2)
+    elif message == 'Miscellanous':
+        markup2 = ReplyKeyboardMarkup(keyboard=[
+                     ['Beacon','Bucket','Snow', 'Fire Charge'],
+                     ['Paper', 'Book','Slime Block', 'Book and Quill'],
+                     ['Map', 'Eye of Ender', 'Firework','Back'],
+                 ])
+        bot.sendMessage(chat_id, 'Select element to craft', reply_markup=markup2)
+    elif message == 'Foodstuff':
+        markup2 = ReplyKeyboardMarkup(keyboard=[
+                     ['Bread','Cake','Melon Block','Rabbit Stew','Stew'],
+                     ['Golden Apple', 'Enchanted Golden Apple','Back'],
+                 ])
+        bot.sendMessage(chat_id, 'Select element to craft', reply_markup=markup2)
+    elif message == 'Tools':
+        markup2 = ReplyKeyboardMarkup(keyboard=[
+                     ['Pick','Shovel','Axe', 'Flint and Steel'],
+                     ['Sword', 'Hoe','Compass','Clock'],
+                     ['Shears', 'Lead','Fishing Rod','Back'],
+                 ])
+        bot.sendMessage(chat_id, 'Select element to craft', reply_markup=markup2)
+    elif message == 'Combat':
+        markup2 = ReplyKeyboardMarkup(keyboard=[
+                     ['Bow','Arrow','Sword', 'Helmet'],
+                     ['Chest', 'Leggings','Boots','Back'],
+                 ])
+        bot.sendMessage(chat_id, 'Select element to craft', reply_markup=markup2)
+    elif message == 'Brewing':
+        markup2 = ReplyKeyboardMarkup(keyboard=[
+                     ['Brewing Stand','Cauldron','Glass Bottle'],
+                     ['Blaze powder', 'Magma cream','Glistering melon',],
+                     ['Fermented Spider eye', 'Back'],
+                 ])
+        bot.sendMessage(chat_id, 'Select element to craft', reply_markup=markup2)
+    elif message == 'Materials':
+        markup2 = ReplyKeyboardMarkup(keyboard=[
+                     ['Brewing Stand','Cauldron','Glass Bottle'],
+                     ['Blaze powder', 'Magma cream','Glistering melon',],
+                     ['Fermented Spider eye', 'Back'],
+                 ])
+        bot.sendMessage(chat_id, 'Select element to craft', reply_markup=markup2)
     else:
         message = message.lower()
         message = message.replace(" ","")
-        message += ".png"
-        address = "images/" + message
-        f = open(address,'rb')
-        bot.sendPhoto(chat_id, f)
+        if os.path.exists("images/" + message + ".png"):
+            f = open("images/" + message + ".png",'rb')
+            bot.sendPhoto(chat_id, f)
+        elif os.path.exists("images/" + message + ".gif"):
+            f = open("images/" + message + ".gif",'rb')
+            bot.sendDocument(chat_id, f)
+        else:
+            bot.sendMessage(chat_id, 'No element existing in our current database')
                 
 
 
