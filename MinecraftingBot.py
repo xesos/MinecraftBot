@@ -31,15 +31,24 @@ def handle(msg):
         bot.sendMessage(chat_id, 'Select the category of element you want to craft', reply_markup=markup)
     elif message == 'Blocks':
         markup2 = ReplyKeyboardMarkup(keyboard=[
-                     ['Stone Brick','Back'],
+                     ['Stone brick', 'Wood', 'Polished granite'],
+                     ['Polished andesite', 'Polished diorite', ],
+                     ['Stone slabs', 'Sanstone', 'Block of coal'],
+                     ['Block of Quartz', 'Block of redstone', 'Iron block'],
+                     ['Pillar quartz block', 'Nether brick', 'Mossys stone brick'],
+                     ['Moss stone', 'Melon block', 'Dark prismarine'],
+                     ['Chiseled red sandstone', 'Chiseled quartz block', 'Chiseled stone brick'],
+                     ['Decorative sandstone','Emerald block','Diamond block','Back'],
                  ])
         bot.sendMessage(chat_id, 'Select element to craft', reply_markup=markup2)
     elif message == 'Decoration':
         markup2 = ReplyKeyboardMarkup(keyboard=[
-                     ['Bed', 'Tripwire hook', 'Button'],
-                     ['Redstone comparator', 'Daylight sensor', 'Hopper'],
-                     ['Dropper', 'Repeater', 'Redstone comparator'],
-                     ['Redstone torch', 'Trapdoor','Pressure plates','Back'],
+                     ['Bed', 'Torch', 'Chest','Furnace'],
+                     ['Sign', 'Ladder', 'Snow', 'Anvil'],
+                     ['Jukebox', 'Fence', 'Stone stairs', 'Glass panes'],
+                     ['Carpets', 'Banner', 'Fence gate', 'Painting'],
+                     ['Item frame', 'Doors', 'Armor stand', 'Wooden stairs'],
+                     ['Enchantement table', 'Ender chest','Flower pot','Back'],
                  ])
         bot.sendMessage(chat_id, 'Select element to craft', reply_markup=markup2)
     elif message == 'Redstone':
@@ -94,9 +103,9 @@ def handle(msg):
         bot.sendMessage(chat_id, 'Select element to craft', reply_markup=markup2)
     elif message == 'Materials':
         markup2 = ReplyKeyboardMarkup(keyboard=[
-                     ['Brewing Stand','Cauldron','Glass Bottle'],
-                     ['Blaze powder', 'Magma cream','Glistering melon',],
-                     ['Fermented Spider eye', 'Back'],
+                     ['Stick','Bowl','Leather'],
+                     ['Brick', 'Melon seeds','Pumpkin seed',],
+                     ['Blazerod', 'Nether brick','Back'],
                  ])
         bot.sendMessage(chat_id, 'Select element to craft', reply_markup=markup2)
     else:
