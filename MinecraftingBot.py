@@ -1,16 +1,20 @@
 import sys
 import time
 import os.path
+from difflib import SequenceMatcher
 import telepot
 import telepot.namedtuple
 from telepot.namedtuple import ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardHide, ForceReply
 from telepot.namedtuple import InlineKeyboardMarkup, InlineKeyboardButton
 from telepot.namedtuple import InlineQueryResultArticle, InlineQueryResultPhoto, InputTextMessageContent
 
+
 def handle(msg):
 
     content_type, chat_type, chat_id = telepot.glance(msg)
     m = telepot.namedtuple.Message(**msg)
+    with open('objects.txt') as f:
+    	objects = f.read().splitlines()
 
     if chat_id < 0:
         # group message
@@ -111,6 +115,7 @@ def handle(msg):
     else:
         message = message.lower()
         message = message.replace(" ","")
+	similar(message,message);
         if os.path.exists("images/" + message + ".png"):
             f = open("images/" + message + ".png",'rb')
             bot.sendPhoto(chat_id, f)
